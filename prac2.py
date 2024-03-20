@@ -86,8 +86,88 @@ def isvalid(s):
 
 
 
-e = isvalid("[]")
+# e = isvalid("[]")
+# print(e)
+
+def longestCommonPrefix(strs):
+    
+    if not strs:
+        return ""
+    prefix = strs[0]
+
+    for word in strs[1:]:
+        while word.find(prefix) != 0:
+            prefix = prefix[:-1]
+            if not prefix:
+                return ""
+    return prefix
+    
+    
+
+    
+# tt = longestCommonPrefix(["flower","flow","flight"])
+# print(tt)
+# print('sss')
+
+def romanToInt( s,):
+        """
+        :type s: str
+        :rtype: int
+        """
+        roman_dict = {
+            'I':1,
+            'V':5,
+            'X':10,
+            'L':50,
+            'C':100,
+            'D':500,
+            'M':1000
+        }
+        sum = 0
+        hv = 0
+        for i in reversed(s):
+            addition =roman_dict[i]
+            if addition<hv :
+                sum -= addition
+            else:
+                sum += addition
+                hv=addition
+        return sum
+
+
+def lengthOfLastWord(s):
+    # e = s.rstrip()
+
+    r = s.split(" ")
+    print(r)
+    
+    r = 'ss '.isalpha()
+    print(r)
+    
+    
+    # last_index = len(e) -1
+    # while e[last_index] != ' ':
+    #     last_index -= 1
+    #     if last_index < 0:
+    #         return len(e)
+    
+    # return len(e[last_index + 1:])
+
+
+    
+
+
+from collections import deque 
+
+stack = deque()
+stack.append(1)
+stack.append(2)
+e = stack.pop()
 print(e)
+
+
+
+
 
   
 
