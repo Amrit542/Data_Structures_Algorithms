@@ -8,7 +8,6 @@ class Stack_LinkedList:
     
     def __init__(self) -> None:
         self.head = None
-        self.tail = None
         self.size = 0
     
     def __len__(self):
@@ -20,57 +19,95 @@ class Stack_LinkedList:
     def first(self):
         if self.is_empty():
             raise Exception("List is Empty")
-        return self.head.next
+        return self.head
 
-    def enque(self, e):
+    def push(self, e):
         node = self.Node(e)
-        node.next = self.head.next
-        self.head.next = node
+        if self.is_empty():
+            self.head  = node
+        else:
+            node.next = self.head
+            self.head = node
         self.size += 1
 
-    def deque(self):
+    def pop(self):
+        if self.is_empty():
+            return None
         node = self.first()
-        self.head.next = self.head.next.next
+
+        self.head = self.head.next
         self.size -= 1
-        node.next = None
+        node.next  = None
         return node.element
 
+    def peek(self):
+        if self.is_empty():
+            return None
+        else:
+            return self.head.element
+    
+    def display(self):
+        if self.is_empty():
+            return None
+        print("Items in single Linked list: ")
+        
+        walk = self.head
+        while walk != None:
+            print(walk.element, end=" ")
+            walk = walk.next
+        print()
+
+
+        
+
     def __iter__(self):
-        cursor = self.header.next
+        cursor = self.head
+        
         while cursor != None:
             yield cursor.element
             cursor = cursor.next
+    
+    def reverse(self):
+        if self.is_empty():
+            return None
+        
+        prev = None
+        
+        curr = self.head
+        while curr != None:
+            next  = curr.next
+            curr.next =  prev
+            prev = curr
+            curr = next
+        
+        self.head = prev
+        return
+
+        # return self._reverse(self.head)
+    
+    def _reverse(self, node):
+        if node.next is None:
+            self.head = node
+            return node
+
+        reversed_node = self._reverse(node.next)
+
+        node.next.next = node
+        node.next = None
+        return node
+
 
 
 
 if __name__ == "__main__":
     L = Stack_LinkedList()
-    L.enque(5)
-    L.enque(6)
-    L.enque(7)
-    L.enque(8)
-    L.enque(9)
-    print("Items in Linked List")
-    for i in L:
-        print(i, end=" ")
-    print()
-    e = L.deque()
-    print(e)
-    print("Items in Linked List")
-    for i in L:
-        print(i, end=" ")
-    print()
-    L.deque()
-    for i in L:
-        print(i, end=" ")
-    print()
-    
-
-
-
-        
-            
-
-
-
-
+    L.push(5)
+    L.push(6)
+    L.push(7)
+    L.push(8)
+    L.push(9)
+    L.push(2)
+    L.display()
+    L.reverse()
+    L.display()
+   

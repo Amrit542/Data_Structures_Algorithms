@@ -15,7 +15,7 @@ class Tree:
         
         def __ne__(self, other):
             """Return True if other does not represent the same location."""
-            raise NotImplementedError("Must be implemented by subclass")
+            return not (self == other)
     
     # ------------ Abstract Methods that concrete subclass must support ---------
     
