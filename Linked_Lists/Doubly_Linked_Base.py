@@ -42,7 +42,7 @@ class _DoublyLinkedBase:
         successor._prev = predecessor
         self._size -= 1
         element = node._element  # record deleted element
-        node._prev = node._next = node._element = None # deprecate node for garbage collection
+        node._prev = node._next = node._element = None   # deprecate node for garbage collection
         return element
 
 

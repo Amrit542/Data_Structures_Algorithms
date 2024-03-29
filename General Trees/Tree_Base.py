@@ -53,4 +53,8 @@ class Tree:
         """Return True if the tree is empty."""
         return len(self) == 0
 
+    def __iter__(self):
+        """Generate an iteration of the tree's elements."""
+        for p in self.postions():
+            yield p.element()
 

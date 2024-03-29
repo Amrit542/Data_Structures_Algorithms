@@ -157,13 +157,41 @@ def lengthOfLastWord(s):
     
 
 
-from collections import deque 
+def plusOne(digits):
+    """
+    :type digits: List[int]
+    :rtype: List[int]
+    """
+    # if not digits: return []
+    # result =  int(''.join(map(str, digits))) + 1
 
-stack = deque()
-stack.append(1)
-stack.append(2)
-e = stack.pop()
-print(e)
+    # digits = [int(i) for i in str(result)]
+    # return digits
+
+    l=len(digits)
+    ans=""
+    for i in range(0,l):
+        ans=ans+(str(digits[i]))
+    print(ans)
+    # x=int(ans)
+    # x=x+1
+    # st=str(x)
+    # li=[]
+    # for i in st:
+    #     li.append(int(i))
+    # return li
+    
+    
+
+
+
+largeNum = [9,9]
+print(plusOne(largeNum))
+
+print("This is test branch")
+print("This is main branch")
+    
+
 
 
 
