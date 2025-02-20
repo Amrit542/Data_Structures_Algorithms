@@ -1,3 +1,5 @@
+from collections import deque 
+
 class Tree:
     """Abstract base class representing a tree structure"""
 
@@ -57,4 +59,41 @@ class Tree:
         """Generate an iteration of the tree's elements."""
         for p in self.postions():
             yield p.element()
+
+    def breadthfirst(self):
+        """Generate a breadth-first iteration of the positions of the tree."""
+        if not self.is_empty():
+            queue = deque()
+            queue.append(self.root())   # starting with root.
+            while queue:
+                p = queue.pop()
+                yield p            # report this position.
+                for c in self.children(p):
+                    queue.append(c) # add children back to the queue.
+
+    def preorder(self):
+        """Generate a preorder iteration of positions in the tree."""
+        if not self.is_empty():
+            for p in self._subtree_preorder(self.root()):
+                yield p
+
+    def _subtree_preorder(self, p):
+        """Generate a preorder iteration of positions in the subtree rooted at p."""
+        yield p
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+
+    def postorder(self):
+        """Generate a postorder iteration of positions in the tree."""
+        if not self.is_empty():
+            for p in self._subtree_postorder(self.root()):
+                yield p
+
+    def _subtree_postorder(self, p):
+        """Generate a postorder iteration of positions in the subtree rooted at p."""
+        for c in self.children(p):
+            for other in self._subtree_preorder(c):
+                yield other
+        yield p   
 
